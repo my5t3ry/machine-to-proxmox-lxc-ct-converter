@@ -3,19 +3,20 @@ usage()
 {
     cat <<EOF
 $1 -h|--help
- -n|--name=<target ct name>
- -t|--target=<target machine uri>
- -i|--id=<proxmox id>
- -s|--root-size=<rootfs size in GB>
- -a|--ip=<target ct ip>
- -b|--gateway=<gatewayinterface>
- -g|--gateway=<gatewayip>
- -m|--memory=<memory in mb>
- -d|--diskstorage=<target storage>
- -p|--password=<root password for ct>
+ -n|--target [lxc container name]
+ -t|--target [target machine ssh uri]
+ -i|--id [proxmox cntainer id]
+ -s|--root-size [rootfs size in GB]
+ -a|--ip [target container ip]
+ -b|--bridge [bridge interface]
+ -g|--gateway [gateway ip]
+ -m|--memory [memory in mb]
+ -d|--diskstorage [target proxmox storage pool]
+ -p|--password [root password for container]
 EOF
     return 0
 }
+
 options=$(getopt -o n:t:i:s:a:b:g:m:d:p:f -l help,name:,target:,id:,root-size:,ip:,bridge:,gateway:,memory:,diskstorage:,password:,foo: -- "$@")
 if [ $? -ne 0 ]; then
         usage $(basename $0)
