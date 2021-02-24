@@ -55,6 +55,7 @@ done
 mkdir -p /tmp/$name/rootfs
 rsync -e ssh -a \
   --exclude '*.log' \
+  --exclude '*.log*' \
   --exclude '*.gz' \
   --exclude '*.sql' \
   --exclude '/swap.img' \
@@ -69,8 +70,8 @@ tar -czvf /tmp/$name.tar.gz -C /tmp/$name/rootfs/ .
 pct create $id /tmp/$name.tar.gz \
   -description LXC \
   -hostname $name \
-  -memory  $memory -nameserver 8.8.8.8 \
+  -memory $memory -nameserver 8.8.8.8 \
   -net0 name=eth0,ip=$ip/24,gw=$gateway,bridge=$bridge \
-  --rootfs $rootsize -storage $storage -password $pass
+  --rootfs $rootsize -storage $storage -password $password
 
 rm -rf /tmp/$name*

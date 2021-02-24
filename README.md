@@ -4,17 +4,7 @@
 #### run skript @proxmox host as root ##### 
 
 ```
-./convert.sh \
--n intern04 \
--t intern04.dgmbsd.de \
--i 111 \
--s 20 \
--a 192.168.111.60 \
--b vmbr0 \
--g 192.168.111.64 \
--m 2048 \
--d default \
--p dgmadm
+  
 
 ```
 
