@@ -1,3 +1,8 @@
+# gnu/linux -> proxmox lxc container #
+
+#### root ssh access/rsync on target machine required ##### 
+#### run skript @proxmox host as root ##### 
+
 ```
 ./convert.sh / 
 - n intern04 / 
