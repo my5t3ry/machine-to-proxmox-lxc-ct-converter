@@ -45,8 +45,8 @@ rsync -e ssh -a \
   --exclude '/swap.img' \
   --exclude '/dev' \
   --exclude '/proc' \
-  --exclude '/sys'
-root@$target:/ /tmp/$name/rootfs --progress
+  --exclude '/sys' \
+  root@$target:/ /tmp/$name/rootfs --progress
 
 tar -czvf /tmp/$name.tar.gz -C /tmp/$name/rootfs/ .
 
