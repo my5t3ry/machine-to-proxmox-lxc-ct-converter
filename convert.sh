@@ -7,16 +7,16 @@ $1 -h|--help
  -t|--target=<target machine uri>
  -i|--id=<proxmox id>
  -s|--root-size=<rootfs size in GB>
- -ip|--ip=<target ct ip>
+ -a|--ip=<target ct ip>
  -b|--gateway=<gatewayinterface>
  -g|--gateway=<gatewayip>
  -m|--memory=<memory in mb>
+ -d|--diskstorage=<target storage>
  -p|--password=<root password for ct>
- -st|--storage=<target storage>
 EOF
     return 0
 }
-options=$(getopt -o n:t:i:s:ip:b:g:m:p:st -l help,name:,target:,id:,root-size:,ip:,bridge:,gateway:,memory:,password:,storage: -- "$@")
+options=$(getopt -o n:t:i:s:a:b:g:m:d:p:f -l help,name:,target:,id:,root-size:,ip:,bridge:,gateway:,memory:,diskstorage:,password:,foo: -- "$@")
 if [ $? -ne 0 ]; then
         usage $(basename $0)
     exit 1
@@ -30,22 +30,28 @@ do
         -t|--target)    target=$2; shift 2;;
         -i|--id)        id=$2; shift 2;;
         -s|--root-size) rootsize=$2; shift 2;;
-        -ip|--ip)       ip=$2; shift 2;;
+        -a|--ip)       ip=$2; shift 2;;
         -b|--bridge)    bridge=$2; shift 2;;
         -g|--gateway)   gateway=$2; shift 2;;
         -m|--memory)    memory=$2; shift 2;;
-        -p|--password)  pass=$2; shift 2;;
-        -st|--storage)  storage=$2; shift 2;;
-        --)             shift 1; break ;;
+        -p|--password)  password=$2; shift 2;;
+        -d|--diskstorage) storage=$2; shift 2;;
+        --)             shift 2; break ;;
         *)              break ;;
     esac
 done
 
-echo $name
-echo $target
-echo $id
-echo $rootsize
-echo $ip
+#echo $name
+#echo $target
+#echo $id
+#echo $rootsize
+#echo $ip
+#echo $bridge
+#echo $gateway
+#echo $password
+#echo $storage
+#echo $memory
+#exit
 mkdir -p /tmp/$name/rootfs
 rsync -e ssh -a \
   --exclude '*.log' \
