@@ -28,6 +28,6 @@
  -b|--bridge [bridge interface]
  -g|--gateway [gateway ip]
  -m|--memory [memory in mb]
- -d|--diskstorage [target proxmox storage pool]
+ -d|--disk-storage [target proxmox storage pool]
  -p|--password [root password for container (min. 5 chars)]
 ```

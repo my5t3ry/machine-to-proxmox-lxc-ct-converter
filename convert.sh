@@ -11,13 +11,13 @@ $1 -h|--help
  -b|--bridge [bridge interface]
  -g|--gateway [gateway ip]
  -m|--memory [memory in mb]
- -d|--diskstorage [target proxmox storage pool]
+ -d|--disk-storage [target proxmox storage pool]
  -p|--password [root password for container (min. 5 chars)]
 EOF
     return 0
 }
 
-options=$(getopt -o n:t:i:s:a:b:g:m:d:p:f -l help,name:,target:,id:,root-size:,ip:,bridge:,gateway:,memory:,diskstorage:,password:,foo: -- "$@")
+options=$(getopt -o n:t:i:s:a:b:g:m:d:p:f -l help,name:,target:,id:,root-size:,ip:,bridge:,gateway:,memory:,disk-storage:,password:,foo: -- "$@")
 if [ $? -ne 0 ]; then
         usage $(basename $0)
     exit 1
@@ -37,7 +37,7 @@ do
         -g|--gateway)   gateway=$2; shift 2;;
         -m|--memory)    memory=$2; shift 2;;
         -p|--password)  password=$2; shift 2;;
-        -d|--diskstorage) storage=$2; shift 2;;
+        -d|--disk-storage) storage=$2; shift 2;;
         --)             shift 2; break ;;
         *)              break ;;
     esac
