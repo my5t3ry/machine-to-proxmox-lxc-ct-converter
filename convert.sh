@@ -35,13 +35,18 @@ do
         -b|--bridge)    bridge=$2; shift 2;;
         -g|--gateway)   gateway=$2; shift 2;;
         -m|--memory)    memory=$2; shift 2;;
-        -p|--password)    pass=$2; shift 2;;
-        -st|--storage)    storage=$2; shift 2;;
+        -p|--password)  pass=$2; shift 2;;
+        -st|--storage)  storage=$2; shift 2;;
         --)             shift 1; break ;;
         *)              break ;;
     esac
 done
 
+echo $name
+echo $target
+echo $id
+echo $rootsize
+echo $ip
 mkdir -p /tmp/$name/rootfs
 rsync -e ssh -a \
   --exclude '*.log' \
