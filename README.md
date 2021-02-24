@@ -5,11 +5,11 @@
 
 ```
 ./convert.sh \
--n foo \
--t bar.memswap-realms.com \
--i 113 \
+-n test \
+-t syspass.dgmbsd.de \
+-i 114 \
 -s 10 \
--a 192.168.111.62 \
+-a 192.168.111.63 \
 -b vmbr0 \
 -g 192.168.111.64 \
 -m 2048 \
@@ -29,5 +29,5 @@
  -g|--gateway [gateway ip]
  -m|--memory [memory in mb]
  -d|--diskstorage [target proxmox storage pool]
- -p|--password [root password for container]
+ -p|--password [root password for container (min. 5 chars)]
 ```

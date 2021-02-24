@@ -12,7 +12,7 @@ $1 -h|--help
  -g|--gateway [gateway ip]
  -m|--memory [memory in mb]
  -d|--diskstorage [target proxmox storage pool]
- -p|--password [root password for container]
+ -p|--password [root password for container (min. 5 chars)]
 EOF
     return 0
 }
