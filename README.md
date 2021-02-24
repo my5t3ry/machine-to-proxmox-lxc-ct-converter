@@ -13,6 +13,7 @@
 - b vmbr0 \ 
 - g 192.168.111.64 \ 
 - m 2048 \ 
+- st default \ 
 - p foo
 
 ```
@@ -28,5 +29,7 @@
  -g|--gateway=<gatewayip>
  -m|--memory=<memory in mb>
  -p|--password=<root password for ct>
+ -st|--storage)    storage=$2; shift 2;;
+
 
 ```

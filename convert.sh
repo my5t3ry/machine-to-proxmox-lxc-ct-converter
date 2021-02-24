@@ -12,10 +12,11 @@ $1 -h|--help
  -g|--gateway=<gatewayip>
  -m|--memory=<memory in mb>
  -p|--password=<root password for ct>
+ -st|--storage=<target storage>
 EOF
     return 0
 }
-options=$(getopt -o n:t:i:s:ip:b:g:m:p -l help,name:,target:,id:,root-size:ip:bridge:gateway:memory:password: -- "$@")
+options=$(getopt -o n:t:i:s:ip:b:g:m:p:s -l help,name:,target:,id:,root-size:ip:bridge:gateway:memory:password:storage: -- "$@")
 if [ $? -ne 0 ]; then
         usage $(basename $0)
     exit 1
@@ -35,6 +36,7 @@ do
         -g|--gateway)   gateway=$2; shift 2;;
         -m|--memory)    memory=$2; shift 2;;
         -p|--password)    pass=$2; shift 2;;
+        -st|--storage)    storage=$2; shift 2;;
         --)             shift 1; break ;;
         *)              break ;;
     esac
@@ -59,6 +61,6 @@ pct create $id /tmp/$name.tar.gz \
   -hostname $name \
   -memory  $memory -nameserver 8.8.8.8 \
   -net0 name=eth0,ip=$ip/24,gw=$gateway,bridge=$bridge \
-  --rootfs $rootsize -storage default -password $pass
+  --rootfs $rootsize -storage $storage -password $pass
 
 rm /tmp/$name.tar.gz
