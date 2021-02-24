@@ -41,12 +41,14 @@ done
 mkdir -p /tmp/$name/rootfs
 rsync -e ssh -a \
   --exclude '*.log' \
+  --exclude '*.tar.gz' \
   --exclude '*.sql' \
+  --exclude '/swap.img' \
   --exclude '/swap.img' \
   --exclude '/dev' \
   --exclude '/proc' \
   --exclude '/sys' \
-  root@$target:/ /tmp/$name/rootfs --progress
+root@$target:/ /tmp/$name/rootfs --progress
 
 tar -czvf /tmp/$name.tar.gz -C /tmp/$name/rootfs/ .
 
