@@ -3,7 +3,7 @@ usage()
 {
     cat <<EOF
 $1 -h|--help
- -n|--target [lxc container name]
+ -n|--name [lxc container name]
  -t|--target [target machine ssh uri]
  -i|--id [proxmox cntainer id]
  -s|--root-size [rootfs size in GB]
