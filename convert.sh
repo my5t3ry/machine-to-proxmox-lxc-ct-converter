@@ -5,7 +5,7 @@ usage()
 $1 -h|--help
  -n|--name [lxc container name]
  -t|--target [target machine ssh uri]
- -i|--id [proxmox cntainer id]
+ -i|--id [proxmox container id]
  -s|--root-size [rootfs size in GB]
  -a|--ip [target container ip]
  -b|--bridge [bridge interface]
