@@ -41,24 +41,12 @@ do
     esac
 done
 
-#echo $name
-#echo $target
-#echo $id
-#echo $rootsize
-#echo $ip
-#echo $bridge
-#echo $gateway
-#echo $password
-#echo $storage
-#echo $memory
-#exit
 mkdir -p /tmp/$name/rootfs
 rsync -e ssh -a \
   --exclude '*.log' \
   --exclude '*.log*' \
   --exclude '*.gz' \
   --exclude '*.sql' \
-  --exclude '/swap.img' \
   --exclude '/swap.img' \
   --exclude '/dev' \
   --exclude '/proc' \
@@ -70,6 +58,7 @@ tar -czvf /tmp/$name.tar.gz -C /tmp/$name/rootfs/ .
 pct create $id /tmp/$name.tar.gz \
   -description LXC \
   -hostname $name \
+  --features nesting=1 \
   -memory $memory -nameserver 8.8.8.8 \
   -net0 name=eth0,ip=$ip/24,gw=$gateway,bridge=$bridge \
   --rootfs $rootsize -storage $storage -password $password

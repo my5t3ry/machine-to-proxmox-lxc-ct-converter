@@ -4,22 +4,30 @@
 #### run skript @proxmox host as root ##### 
 
 ```
-  
+./convert.sh \
+-n foo \
+-t bar.memswap-realms.com \
+-i 113 \
+-s 10 \
+-a 192.168.111.62 \
+-b vmbr0 \
+-g 192.168.111.64 \
+-m 2048 \
+-d default \
+-p foo
 
 ```
 
 ```
-./convert.sh -h|--help
- -n|--name <target ct name>
- -t|--target <target machine uri>
- -i|--id <proxmox id>
- -s|--root-size <rootfs size in GB>
- -ip|--ip <target ct ip>
- -b|--gateway <gatewayinterface>
- -g|--gateway <gatewayip>
- -m|--memory <memory in mb>
- -p|--password <root password for ct>
- -st|--storage)    storage $2; shift 2;;
-
-
+/convert.sh -h|--help
+ -n|--target [lxc container name]
+ -t|--target [target machine ssh uri]
+ -i|--id [proxmox cntainer id]
+ -s|--root-size [rootfs size in GB]
+ -a|--ip [target container ip]
+ -b|--bridge [bridge interface]
+ -g|--gateway [gateway ip]
+ -m|--memory [memory in mb]
+ -d|--diskstorage [target proxmox storage pool]
+ -p|--password [root password for container]
 ```
