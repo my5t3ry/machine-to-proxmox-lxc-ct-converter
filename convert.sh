@@ -66,4 +66,5 @@ pct create $id /tmp/$name.tar.gz \
   -net0 name=eth0,ip=$ip/24,gw=$gateway,bridge=$bridge \
   --rootfs $rootsize -storage $storage -password $password
 
+rm -rf /tmp/$name
 rm -rf /tmp/$name*
