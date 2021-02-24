@@ -22,7 +22,6 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 eval set -- "$options"
- 
 while true
 do
     case "$1" in
