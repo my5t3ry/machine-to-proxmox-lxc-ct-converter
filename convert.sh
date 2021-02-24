@@ -16,7 +16,7 @@ $1 -h|--help
 EOF
     return 0
 }
-options=$(getopt -o n:t:i:s:ip:b:g:m:p:s -l help,name:,target:,id:,root-size:ip:bridge:gateway:memory:password:storage: -- "$@")
+options=$(getopt -o n:t:i:s:ip:b:g:m:p:st -l help,name:,target:,id:,root-size:,ip:,bridge:,gateway:,memory:,password:,storage: -- "$@")
 if [ $? -ne 0 ]; then
         usage $(basename $0)
     exit 1
