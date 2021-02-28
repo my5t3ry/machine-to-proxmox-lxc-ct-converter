@@ -1,6 +1,6 @@
 # convert any gnu/linux machine into a proxmox lxc container #
 
-#### root ssh access/rsync on target machine required ##### 
+#### root ssh access on target machine required ##### 
 #### run skript @proxmox host with root privileges ##### 
 
 ```
