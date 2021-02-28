@@ -43,22 +43,23 @@ do
     esac
 done
 
-mkdir -p /tmp/$name/rootfs
+collectFS() {
+    tar -czf - -C / \
+	--exclude="sys" \
+	--exclude="dev" \
+	--exclude="proc" \
+	--exclude="*.log" \
+	--exclude="*.log*" \
+	--exclude="*.gz" \
+	--exclude="*.sql" \
+	--exclude="swap.img" \
+	.
+}
 
-rsync -e ssh -a \
-  --exclude '*.log' \
-  --exclude '*.log*' \
-  --exclude '*.gz' \
-  --exclude '*.sql' \
-  --exclude '/swap.img' \
-  --exclude '/dev' \
-  --exclude '/proc' \
-  --exclude '/sys' \
-  root@$target:/ /tmp/$name/rootfs --progress
+ssh "root@$target" "$(typeset -f collectFS); collectFS" \
+    > "/tmp/$name.tar.gz"
 
-tar -czvf /tmp/$name.tar.gz -C /tmp/$name/rootfs/ .
-
-pct create $id /tmp/$name.tar.gz \
+pct create $id "/tmp/$name.tar.gz" \
   -description LXC \
   -hostname $name \
   --features nesting=1 \
@@ -66,5 +67,4 @@ pct create $id /tmp/$name.tar.gz \
   -net0 name=eth0,ip=$ip/24,gw=$gateway,bridge=$bridge \
   --rootfs $rootsize -storage $storage -password $password
 
-rm -rf /tmp/$name
-rm -rf /tmp/$name*
+rm -rf "/tmp/$name.tar.gz"
