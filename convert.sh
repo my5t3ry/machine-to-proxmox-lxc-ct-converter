@@ -44,7 +44,7 @@ do
 done
 
 collectFS() {
-    tar -c -I 'xz -0 -T0' -C / \
+    tar -czvvf - -C / \
 	--exclude="sys" \
 	--exclude="dev" \
 	--exclude="run" \
