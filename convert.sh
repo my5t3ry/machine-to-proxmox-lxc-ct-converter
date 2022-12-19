@@ -1,4 +1,9 @@
 #!/bin/bash
+if ! command -v pct &> /dev/null
+then
+    echo "pct could not be found. This script must be run on the host machine proxmox"
+    exit 1
+fi
 usage()
 {
     cat <<EOF
