@@ -7,6 +7,7 @@
 ./convert.sh \
 -n test \
 -t syspass.dgmbsd.de \
+-P 22 \ 
 -i 114 \
 -s 10 \
 -a 192.168.111.63 \
@@ -22,6 +23,7 @@
 /convert.sh -h|--help
  -n|--name [lxc container name]
  -t|--target [target machine ssh uri]
+ -P|--port [target port ssh]
  -i|--id [proxmox container id]
  -s|--root-size [rootfs size in GB]
  -a|--ip [target container ip]
