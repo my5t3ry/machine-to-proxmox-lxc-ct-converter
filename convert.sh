@@ -114,6 +114,16 @@ selectIPConfig()
     esac
 }
 
+# Funcition to choose privileged or unprivileged container
+selectPrivilege()
+{
+    if (whiptail --title "Set privilege" --yesno "Is this a privileged container?" 10 60); then
+        privilege="--unprivileged 0"
+    else
+        privilege="--unprivileged 1"
+    fi
+}
+
 # Interactive menu to get user input
 userInput() 
 {
@@ -135,6 +145,7 @@ userInput()
     memory=$(createMenu "Memory" "Enter the memory in MB:")
     storage=$(createMenu "Storage Pool" "Enter the target Proxmox storage pool:")
     passwordCT=$(whiptail --title "Root Password" --inputbox "Enter the root password for the container (min. 5 chars):" 10 60 --cancel-button "Cancel" 3>&1 1>&2 2>&3)
+    selectPrivilege
 }
 
 # Function to collect file system data, excluding unnecessary directories and files
@@ -188,12 +199,13 @@ convert()
         --features nesting=1 \
         -memory "$memory" -nameserver 8.8.8.8 \
         $ip_param \
+        $privilege \
         --rootfs "$rootsize" -storage "$storage" -password "$passwordCT"; then
         whiptail --title "Success" --msgbox "Proxmox container created successfully!" 10 60
     else
         whiptail --title "Error" --msgbox "Failed to create Proxmox container." 10 60
     fi
-                
+
     # Step 3: Remove the temporary file
     rm -rf "/tmp/$name.tar.gz"
 }
